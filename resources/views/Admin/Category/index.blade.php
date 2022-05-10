@@ -11,7 +11,7 @@
                     </div>
                     @endif
                     <div class="card-header">
-                        List of users
+                        All Category
                     </div>
 
 
@@ -19,21 +19,39 @@
 
                         <thead class="table-light">
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">SL</th>
+                                <th scope="col">Category Name</th>
+                                <th scope="col">User Id</th>
+                                <th scope="col">Created At</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($categories as $key=>$row)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+
+                                <!-- [   $categories->firstItem()+$loop->index ] this is for ordering items number in pagination. -->
+
+                                <th scope="row">{{$categories->firstItem()+$loop->index}}</th>
+                                <td>{{$row->category_name}}</td>
+                                <td>{{$row->user_id}}</td>
+                                <td>
+                                    @if($row->created_at == NULL)
+                                    <span class="text-danger">No Date Set</span>
+                                    @else
+                                    {{$row->created_at->diffForHumans()}}
+
+                                    <!-- when use query for getting data then have to use this Carbon -->
+                                    <!-- {{Carbon\Carbon::parse($row->created_at)->diffForHumans()}} -->
+                                    @endif
+
+                                </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
+
+                    <!-- Connecting pagination by using default method -->
+                    {{$categories -> links()}}
                 </div>
             </div>
             <!-- add category card -->
