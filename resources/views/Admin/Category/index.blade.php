@@ -21,7 +21,7 @@
                             <tr>
                                 <th scope="col">SL</th>
                                 <th scope="col">Category Name</th>
-                                <th scope="col">User Id</th>
+                                <th scope="col">User</th>
                                 <th scope="col">Created At</th>
                             </tr>
                         </thead>
@@ -33,7 +33,7 @@
 
                                 <th scope="row">{{$categories->firstItem()+$loop->index}}</th>
                                 <td>{{$row->category_name}}</td>
-                                <td>{{$row->user_id}}</td>
+                                <td>{{$row->user->name}}</td>
                                 <td>
                                     @if($row->created_at == NULL)
                                     <span class="text-danger">No Date Set</span>
