@@ -9,18 +9,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Category extends Model
 {
     use SoftDeletes;
-    protected $hidden = [
+    protected $fillable = [
         'user_id',
         'category_name',
     ];
+
 
     // one to one relation  [getting the user name from user-table fro category table]
     public function user()
     {
         // learn by Youtube
-        // return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
 
         // learn by Udemy
-        return $this->hasOne(User::class, "id", "user_id");
+        // return $this->hasOne(User::class, "id", "user_id");
     }
 }
